@@ -1,5 +1,5 @@
 module.exports = {
     events: {
-        HOTEL: 'Hilton','Orchidea','Herods','Oasis'
+        HOTEL1: 'Hilton'
     }
 }

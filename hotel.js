@@ -4,35 +4,31 @@ var EventEmmiter = require('events');
 var eventsConfig = require ('./config');
 
 module.exports = class someHotel extends EventEmmiter {
-    constructor() {
+    constructor(data) {
         super();
-        this.hotel = 'Hotel';
+        this.hotel = data;
         this.rank = 0;
     }
-
-    hotels(data) {
-        console.log(`${ this.hotel }: ${data}`);
-        this.emit(eventsConfig.Hotel, data);
-    }
-    rankinc() {
+// rank is between 0 to 5
+    rankinc() { // ranking up
         if ((this.rank >= 0) && (this.rank < 5)) {
            this.rank++;
-           this.emit('rankInc'); //emit (=fire) event 
+           this.emit(eventsConfig.data,'rankInc'); //emit (=fire) event
         }
         else{
             this.rank;
         }
         console.log(`${ this.rank }`);
-        this.emit(eventsConfig.Hotel, this.rank);
+        this.emit(eventsConfig.data, this.rank);
     }
 
-    rankdec() {
-        if (this.rank <= 5) {
+    rankdec() {  // ranking down (if between 5 to 4 decreament in 0.1)
+        if ((this.rank <= 5) && (this.rank > 4)) {
             this.rank = this.rank - 0.1;
         }
         if ((this.rank > 0) && (this.rank <= 4)) {
            this.rank--;
-           this.emit('rankDec'); //emit (=fire) event 
+           this.emit(eventsConfig.data, 'rankDec'); //emit (=fire) event 
         }
         else{
             this.rank;
